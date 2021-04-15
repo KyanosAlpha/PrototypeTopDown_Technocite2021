@@ -71,4 +71,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /[Aa]ssets/[Pp]lugins/[Pp]olygonPrototype
-/[Aa]ssets/[Pp]lugins/*.meta
+/[Aa]ssets/[Pp]lugins/PolygonPrototype.meta
