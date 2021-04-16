@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class AimController : MonoBehaviour
 {
+    #region Properties
+
     public Camera MainCamera;
     public Transform Aim;
     private Transform m_MyTransform;
+
+    #endregion
 
     private void Awake()
     {

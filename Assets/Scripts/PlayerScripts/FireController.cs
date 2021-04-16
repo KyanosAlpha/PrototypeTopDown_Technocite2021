@@ -19,16 +19,14 @@ public class FireController : MonoBehaviour
 
     private bool _isHit;
 
-
-
     #endregion
 
-    void Start()
+    private void Start()
     {
         Initialize();
     }
 
-    void Update()
+    private void Update()
     {
         Shoot();
     }
