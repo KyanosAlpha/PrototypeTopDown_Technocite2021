@@ -11,6 +11,10 @@ public class FireController : MonoBehaviour
     public ParticleSystem ParticlesImpactPrefabs;
     public Light Fire;
 
+    private RaycastHit _hit;
+
+    private bool _isHit;
+
     #endregion
 
     void Start()
@@ -20,20 +24,33 @@ public class FireController : MonoBehaviour
 
     void Update()
     {
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        _isHit = Physics.Raycast(Gun.position, Gun.forward, out _hit);
+
         if (Input.GetMouseButtonDown(0))
         {
             MuzzleFlash.Play();
             Fire.gameObject.SetActive(true);
             Invoke("SetOffLight", 0.1f);
 
-            if (Physics.Raycast(Gun.position, transform.forward, out RaycastHit hit))
+            if (_isHit)
             {
-                ParticleSystem ParticlesImpact = Instantiate(ParticlesImpactPrefabs, hit.point, Quaternion.identity);
-                ParticlesImpact.transform.LookAt(hit.normal);
-
-                //Destroy(hit.collider.gameObject);
+                ParticleSystem ParticlesImpact = Instantiate(ParticlesImpactPrefabs, _hit.point, Quaternion.identity);
+                ParticlesImpact.transform.rotation = Quaternion.LookRotation(_hit.normal);
+                
+                Destroy(ParticlesImpact.gameObject, 0.1f);
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(_hit.point, _hit.point + _hit.normal);
     }
 
     private void SetOffLight()
