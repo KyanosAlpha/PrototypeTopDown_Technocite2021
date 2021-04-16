@@ -19,6 +19,8 @@ public class FireController : MonoBehaviour
 
     private bool _isHit;
 
+
+
     #endregion
 
     void Start()
@@ -33,7 +35,7 @@ public class FireController : MonoBehaviour
 
     private void Initialize()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         _nextShootTime = 0f;
     }
@@ -54,6 +56,12 @@ public class FireController : MonoBehaviour
 
             if (_isHit)
             {
+                GameObject _hitObject = _hit.collider.gameObject;
+                if (LayerMask.LayerToName(_hitObject.layer) == "Destructible")
+                {
+                    Destroy(_hitObject);
+                }
+
                 ParticleSystem ParticlesImpact = Instantiate(ParticlesImpactPrefabs, _hit.point, Quaternion.identity);
                 ParticlesImpact.transform.rotation = Quaternion.LookRotation(_hit.normal);
                 
