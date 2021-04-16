@@ -2599,6 +2599,7 @@ MonoBehaviour:
   MuzzleFlash: {fileID: 1184284544}
   ParticlesImpactPrefabs: {fileID: 5769979078065954965, guid: 252d119b1777ac545965e2a797f87c50, type: 3}
   Fire: {fileID: 1104660959}
+  BulletTrailPrefabs: {fileID: 499684053849434969, guid: 853b8cd71dca60c4093451cd8c6819b3, type: 3}
 --- !u!1001 &700552533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3784,7 +3785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

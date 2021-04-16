@@ -10,6 +10,7 @@ public class FireController : MonoBehaviour
     public ParticleSystem MuzzleFlash;
     public ParticleSystem ParticlesImpactPrefabs;
     public Light Fire;
+    public TrailRenderer BulletTrailPrefabs;
 
     private RaycastHit _hit;
 
@@ -19,7 +20,7 @@ public class FireController : MonoBehaviour
 
     void Start()
     {
-        
+        Cursor.visible = false;
     }
 
     void Update()
@@ -34,8 +35,12 @@ public class FireController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             MuzzleFlash.Play();
+
             Fire.gameObject.SetActive(true);
             Invoke("SetOffLight", 0.1f);
+
+            TrailRenderer bulletTrail = Instantiate(BulletTrailPrefabs, Gun.position, Quaternion.identity);
+            bulletTrail.AddPosition(Gun.position);
 
             if (_isHit)
             {
@@ -43,6 +48,8 @@ public class FireController : MonoBehaviour
                 ParticlesImpact.transform.rotation = Quaternion.LookRotation(_hit.normal);
                 
                 Destroy(ParticlesImpact.gameObject, 0.1f);
+
+                bulletTrail.transform.position = _hit.point;
             }
         }
     }
