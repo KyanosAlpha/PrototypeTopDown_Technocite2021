@@ -12,6 +12,9 @@ public class FireController : MonoBehaviour
     public Light Fire;
     public TrailRenderer BulletTrailPrefabs;
 
+    public float ShootPeriod;
+    private float _nextShootTime;
+
     private RaycastHit _hit;
 
     private bool _isHit;
@@ -20,7 +23,7 @@ public class FireController : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = false;
+        Initialize();
     }
 
     void Update()
@@ -28,11 +31,18 @@ public class FireController : MonoBehaviour
         Shoot();
     }
 
+    private void Initialize()
+    {
+        Cursor.visible = false;
+
+        _nextShootTime = 0f;
+    }
+
     private void Shoot()
     {
         _isHit = Physics.Raycast(Gun.position, Gun.forward, out _hit);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && Time.time >= _nextShootTime)
         {
             MuzzleFlash.Play();
 
@@ -51,6 +61,8 @@ public class FireController : MonoBehaviour
 
                 bulletTrail.transform.position = _hit.point;
             }
+
+            _nextShootTime = Time.time + ShootPeriod;
         }
     }
 

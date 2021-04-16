@@ -2600,6 +2600,7 @@ MonoBehaviour:
   ParticlesImpactPrefabs: {fileID: 5769979078065954965, guid: 252d119b1777ac545965e2a797f87c50, type: 3}
   Fire: {fileID: 1104660959}
   BulletTrailPrefabs: {fileID: 499684053849434969, guid: 853b8cd71dca60c4093451cd8c6819b3, type: 3}
+  ShootPeriod: 0.2
 --- !u!1001 &700552533
 PrefabInstance:
   m_ObjectHideFlags: 0
